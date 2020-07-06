@@ -10,6 +10,8 @@ const ProfileBox = ({
   profileImages,
   sanitisedNickname,
   profileAudio,
+  onStartAudio,
+  forceStop
 }) => {
   const linkRef = useRef();
   const [hover, setHover] = useState(false);
@@ -82,7 +84,7 @@ const ProfileBox = ({
         </Link>
       )}
       {profileAudio ? (
-        <PlayAudio hasAnimation={false} audioSrc={profileAudio} />
+        <PlayAudio hasAnimation={false} audioSrc={profileAudio} onStartAudio={onStartAudio} forceStop={forceStop}/>
       ) : (
         ''
       )}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ProfileBox from 'components/profile-box';
 import Distinct from '../../helpers/arrayHelpers';
@@ -12,6 +12,13 @@ const ProfileList = ({ filteredPeople }) => {
 
   const getPeopleInRole = role => {
     return filteredPeople.filter(p => p.role === role);
+  };
+
+  const [isPlaying, setIsPlaying] = useState('');
+
+  const isPlayingForProfile = profile => {
+    console.log('Set :' + profile);
+    setIsPlaying(profile);
   };
 
   return (
@@ -32,6 +39,10 @@ const ProfileList = ({ filteredPeople }) => {
                       profileImages={person.profileImages}
                       sanitisedNickname={person.sanitisedNickname}
                       profileAudio={person.profileAudio}
+                      onStartAudio={() =>
+                        isPlayingForProfile(person.profileAudio)
+                      }
+                      forceStop={isPlaying}
                     />
                   );
                 })}

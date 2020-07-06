@@ -5,14 +5,19 @@ import lottie from 'lottie-web';
 import animation from '../../animations/lf30_editor_DirdRw.json';
 import PropTypes from 'prop-types';
 
-const PlayAudio = ({ hasAnimation, audioSrc }) => {
+const PlayAudio = ({ hasAnimation, audioSrc, onStartAudio, forceStop }) => {
   const animationContainer = createRef();
-  const [audio, setAudio] = useState({});
+  const [audio, setAudio] = useState(
+    typeof Audio !== 'undefined' ? new Audio() : {}
+  );
   const [isPlaying, setIsPlaying] = useState(false);
   const [hoverAudio, setHoverAudio] = useState(false);
 
   const playAudio = () => {
     setIsPlaying(true);
+    if (onStartAudio) {
+      onStartAudio();
+    }
     audio.src = audioSrc;
     audio.play();
     if (hasAnimation) {
@@ -45,7 +50,15 @@ const PlayAudio = ({ hasAnimation, audioSrc }) => {
   };
 
   useEffect(() => {
-    setAudio(new Audio());
+    /* if (!audio) {
+      setAudio(new Audio());
+    }*/
+    if (audio && forceStop !== audioSrc) {
+      console.log('stop :' + audioSrc);
+      if (isPlaying) {
+        pauseAudio();
+      }
+    }
 
     if (hasAnimation) {
       lottie.loadAnimation({
@@ -58,7 +71,7 @@ const PlayAudio = ({ hasAnimation, audioSrc }) => {
 
       return () => lottie.destroy();
     }
-  }, []);
+  }, [forceStop]);
 
   return (
     <>
