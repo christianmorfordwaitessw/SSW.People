@@ -30,6 +30,7 @@ const Head = ({
         name="viewport"
       />
       {isChinaBuild && <meta name="robots" content="noindex"></meta>}
+      {!isChinaBuild && <script src="/detectCountry.js" />}
       <meta content={siteTitle} name="apple-mobile-web-app-title" />
       <meta content={pageTitleFull} property="og:title" />
       <meta content={pageTitleFull} name="twitter:title" />
