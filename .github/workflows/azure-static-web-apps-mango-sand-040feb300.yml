@@ -39,10 +39,10 @@ jobs:
       VERSION_DEPLOYED: '1.0.0'
       CHINA_BUILD: 'FALSE'
       REWRITES_JSON_URL: 'FALSE'
-      CRM_APP_ID: ''
-      CRM_TENANT: ''
-      CRM_TENANT_ID: ''
-      CRM_APP_SECRET: ''
-      CRM_SCOPE: ''
-      CRM_VIEW_CURRENT: ''
-      CRM_VIEW_PAST: ''
+      CRM_APP_ID: ${{ secrets.CRM_APP_ID }}
+      CRM_TENANT: ${{ secrets.CRM_TENANT }}
+      CRM_TENANT_ID: ${{ secrets.CRM_TENANT_ID }}
+      CRM_APP_SECRET: ${{ secrets.CRM_APP_SECRET }}
+      CRM_SCOPE: ${{ secrets.CRM_SCOPE }}
+      CRM_VIEW_CURRENT: ${{ secrets.CRM_VIEW_CURRENT }}
+      CRM_VIEW_PAST: ${{ secrets.CRM_VIEW_PAST }}
