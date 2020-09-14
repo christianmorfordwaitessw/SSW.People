@@ -168,6 +168,27 @@ exports.sourceNodes = async ({ actions }) => {
   return;
 };
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+      type markdownRemark implements Node {
+          frontmatter: Features
+          html: [String]
+      }
+      type Features {
+          id: [String]
+          name: [String]
+          qualifications: [String]
+          quote: [String]
+          quoteAuthor: [String]
+          role: [String]
+          jobTitle: [String]
+          alternativeUrl: [String]
+      }
+  `;
+  createTypes(typeDefs);
+};
+
 exports.createPages = async function({ actions, graphql }) {
   const { data } = await graphql(`
     query {
